@@ -5,31 +5,30 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import net.serenitybdd.junit5.SerenityTest;
 import net.serenitybdd.rest.Ensure;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import net.serenitybdd.rest.SerenityRest;
+import org.junit.jupiter.api.*;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static net.serenitybdd.rest.SerenityRest.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.*;
 
 @SerenityTest
+@TestMethodOrder(MethodOrderer.DisplayName.class)
 public class SimpleSpartanTest {
 
     @BeforeAll
     public static void setUp() {
         RestAssured.baseURI = "http://54.224.154.167:8000";
         RestAssured.basePath = "/api";
+        //System.out.println("getDefaultRequestSpecification() = "+getDefaultRequestSpecification());
     }
 
     @AfterAll
     public static void cleanUp(){
-        reset();
+        RestAssured.reset();
     }
 
     @DisplayName("Testing GET /api/hello Endpoint")
@@ -66,34 +65,6 @@ public class SimpleSpartanTest {
 
     }
 
-    @DisplayName("Admin user should be able to Add Spartan")
-    @Test
-    public void testAdd1Data(){
-
-        Map<String, Object> payload = SpartanUtil.getRandomSpartanRequestPayLoad();
-
-        given()
-                .log().all()
-                .auth().basic("admin", "admin")
-                .contentType(ContentType.JSON)
-                .body(payload).
-        when()
-                .post("/spartans") ;
-
-        Ensure.that("Request was successful",
-                thenResponse->thenResponse.statusCode(201))
-               .andThat("We got json format result",
-                       thenResponse->thenResponse.contentType(ContentType.JSON))
-               .andThat("Success Message is A Spartan is Born!",
-                       thenResponse->thenResponse.body("success", is("A Spartan is Born!")))
-        ;
-
-
-
-
-
-
-    }
 
 
 
