@@ -1,31 +1,12 @@
 package serenity;
 
-import com.github.javafaker.Faker;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import net.serenitybdd.junit5.SerenityTest;
 import net.serenitybdd.rest.Ensure;
-import net.serenitybdd.rest.SerenityRest;
-import net.thucydides.core.annotations.Title;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import static net.serenitybdd.rest.SerenityRest.given;
-import static net.serenitybdd.rest.SerenityRest.lastResponse;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.is;import com.github.javafaker.Faker;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import net.serenitybdd.junit5.SerenityTest;
-import net.serenitybdd.rest.Ensure;
-import net.serenitybdd.rest.SerenityRest;
-import net.thucydides.core.annotations.Title;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
-import static net.serenitybdd.rest.SerenityRest.given;
-import static net.serenitybdd.rest.SerenityRest.lastResponse;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 
 @SerenityTest
@@ -37,10 +18,10 @@ public class Test_GitHub_feature {
     public void testGitHubGetOneUserEndpointTest() {
         given()
                 .contentType(ContentType.JSON)
-                .pathParam("username","CybertekSchool")
-                .when()
+                .pathParam("username","CybertekSchool").
+        when()
                 .get("https://api.github.com/users/{username}").
-                then()
+        then()
                 .assertThat()
                 .statusCode(200)
         //.log().all();
@@ -55,7 +36,7 @@ public class Test_GitHub_feature {
                 .contentType(ContentType.JSON)
                 .when()
                 .get("https://api.github.com/users/CybertekSchool").
-                then()
+        then()
                 .assertThat()
                 .statusCode(200)
         //.log().all();
