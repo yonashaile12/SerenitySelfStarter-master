@@ -1,5 +1,6 @@
 package serenity.spartan;
 
+import Utility.SpartanUtil;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import net.serenitybdd.junit5.SerenityTest;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static net.serenitybdd.rest.SerenityRest.*;
@@ -21,7 +23,7 @@ public class SimpleSpartanTest {
 
     @BeforeAll
     public static void setUp() {
-        RestAssured.baseURI = "http://54.90.101.103:8000";
+        RestAssured.baseURI = "http://54.224.154.167:8000";
         RestAssured.basePath = "/api";
     }
 
@@ -62,10 +64,38 @@ public class SimpleSpartanTest {
                         vResponse->vResponse.time(lessThan(2L), TimeUnit.SECONDS))
         ;
 
+    }
+
+    @DisplayName("Admin user should be able to Add Spartan")
+    @Test
+    public void testAdd1Data(){
+
+        Map<String, Object> payload = SpartanUtil.getRandomSpartanRequestPayLoad();
+
+        given()
+                .log().all()
+                .auth().basic("admin", "admin")
+                .contentType(ContentType.JSON)
+                .body(payload).
+        when()
+                .post("/spartans") ;
+
+        Ensure.that("Request was successful",
+                thenResponse->thenResponse.statusCode(201))
+               .andThat("We got json format result",
+                       thenResponse->thenResponse.contentType(ContentType.JSON))
+               .andThat("Success Message is A Spartan is Born!",
+                       thenResponse->thenResponse.body("success", is("A Spartan is Born!")))
+        ;
+
+
+
 
 
 
     }
+
+
 
 
 }

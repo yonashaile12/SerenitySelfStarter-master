@@ -3,6 +3,7 @@ package serenity;
 import io.restassured.http.ContentType;
 import net.serenitybdd.junit5.SerenityTest;
 import net.serenitybdd.rest.Ensure;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import static net.serenitybdd.rest.SerenityRest.given;
 import static org.hamcrest.Matchers.is;
 
 @SerenityTest
+@Disabled
 public class Test_GitHub_feature {
 
     @DisplayName("Initial DEMO for GitHub User test")
