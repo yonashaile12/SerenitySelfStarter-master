@@ -12,38 +12,38 @@ import static org.hamcrest.Matchers.is;
 @SerenityTest
 public class Test_GitHub_feature {
 
-    @DisplayName("This is for GitHub Test1")
+    @DisplayName("Initial DEMO for GitHub User test")
     @Test
-    @Tag("tag1")
+//    @Tag("tag1")
     public void testGitHubGetOneUserEndpointTest() {
         given()
                 .contentType(ContentType.JSON)
                 .pathParam("username","CybertekSchool").
-        when()
+                when()
                 .get("https://api.github.com/users/{username}").
-        then()
+                then()
+                // this is regular RestAssured way
                 .assertThat()
                 .statusCode(200)
-        //.log().all();
-        ;
-        Ensure.that("Test My GitHub Return the data1",
-                response -> response.body("login", is("CybertekSchool")));
+                .body("login", is("CybertekSchool")) ;
+        // this is regular RestAssured way
     }
-    @DisplayName("DisplayName This is for GitHub Test2")
+    @DisplayName("This is serenity way of providing test result")
     @Test
     public void testManyGitHubGetOneUserEndpoint2() {
         given()
                 .contentType(ContentType.JSON)
-                .when()
-                .get("https://api.github.com/users/CybertekSchool").
-        then()
-                .assertThat()
-                .statusCode(200)
-        //.log().all();
-        ;
-        Ensure.that("Test My GitHub Return the data",
+                .pathParam("username","CybertekSchool").
+                when()
+                .get("https://api.github.com/users/{username}");
+        // this is serenity way we can generate custom report for validation steps
+        Ensure.that("Response was successful (instead of saying 200 : )",
+                response -> response.statusCode( 200  )
+        ) ;
+        Ensure.that("This is custom message for verifying login field in response",
                 response -> response.body("login", is("CybertekSchool")));
     }
+
 
 
 }
