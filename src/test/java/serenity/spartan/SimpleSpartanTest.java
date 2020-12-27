@@ -21,6 +21,7 @@ public class SimpleSpartanTest {
 
     @BeforeAll
     public static void setUp() {
+        //54.224.154.167:8000
         RestAssured.baseURI = "http://54.224.154.167:8000";
         RestAssured.basePath = "/api";
         //System.out.println("getDefaultRequestSpecification() = "+getDefaultRequestSpecification());
@@ -35,7 +36,9 @@ public class SimpleSpartanTest {
     @Test
     public void testingHelloEndPoint(){
         given()
-                .auth().basic("admin", "admin").
+                .auth().basic("admin", "admin")
+                .log().all()
+                .contentType(ContentType.JSON).
         when()
                 .get("/hello").
                 then()
