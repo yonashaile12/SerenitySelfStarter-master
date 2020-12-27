@@ -15,6 +15,7 @@ public class SpartanTestBase {
 
     @AfterAll
     public static void cleanUp(){
+        RestAssured.reset();
         SerenityRest.clear();
     }
 
