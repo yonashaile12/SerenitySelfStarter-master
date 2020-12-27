@@ -28,13 +28,14 @@ public class SimpleSpartanTest {
 
     @AfterAll
     public static void cleanUp(){
-        RestAssured.reset();
+        SerenityRest.clear();
     }
 
     @DisplayName("Testing GET /api/hello Endpoint")
     @Test
     public void testingHelloEndPoint(){
-
+        given()
+                .auth().basic("admin", "admin").
         when()
                 .get("/hello").
                 then()

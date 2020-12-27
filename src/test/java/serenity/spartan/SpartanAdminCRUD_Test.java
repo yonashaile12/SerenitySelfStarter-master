@@ -39,15 +39,14 @@ public class SpartanAdminCRUD_Test {
                 .auth().basic("admin","admin")
                 .contentType(ContentType.JSON)
                 .body(payload).
-                when()
+        when()
                 .post("/spartans") ;
         Ensure.that("Request was successful"  ,
                 thenResponse -> thenResponse.statusCode(201) )
                 .andThat("We got json format result",
                         thenResponse -> thenResponse.contentType(ContentType.JSON) )
                 .andThat("success message is A Spartan is born!" ,
-                        thenResponse ->
-                                thenResponse.body("success",is("A Spartan is Born!") )  )
+                        thenResponse -> thenResponse.body("success",is("A Spartan is Born!") )  )
         ;
         Ensure.that("The data " + payload + " we provided added correctly",
                 vRes -> vRes.body("data.name", is( payload.get("name")  ) )
@@ -78,6 +77,9 @@ public class SpartanAdminCRUD_Test {
                 thenResponse-> thenResponse.statusCode(200) ) ;
         // add all validation for body here as homework
         // add put and patch as homework
+
+//        Ensure.that("We can get all the Json generated Data",
+//                thenResponse ->thenResponse.body("name", is(p)));
 
     }
 
