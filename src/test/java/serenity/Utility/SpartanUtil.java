@@ -1,11 +1,11 @@
-package Utility;
+package serenity.Utility;
 
 import com.github.javafaker.Faker;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class SpartanUtil {
-//spartan MyUrl = 54.224.154.167:8000
+//spartan MyUrl = 52.201.244.7:8000
     public static Map<String, Object> getRandomSpartanRequestPayLoad(){
 
         Faker faker = new Faker();

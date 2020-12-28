@@ -1,4 +1,4 @@
-package Utility;
+package serenity.Utility;
 
 import io.restassured.RestAssured;
 import net.serenitybdd.rest.SerenityRest;
@@ -9,7 +9,7 @@ public class SpartanTestBase {
 
     @BeforeAll
     public static void setUp() {
-        RestAssured.baseURI = "http://54.224.154.167:8000";
+        RestAssured.baseURI = "http://52.201.244.7:8000";
         RestAssured.basePath = "/api";
     }
 

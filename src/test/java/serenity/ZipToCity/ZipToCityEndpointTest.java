@@ -1,9 +1,8 @@
-package ZipToCity;
+package serenity.ZipToCity;
 
 import io.restassured.RestAssured;
 import net.serenitybdd.junit5.SerenityTest;
 import net.serenitybdd.rest.Ensure;
-import net.serenitybdd.rest.SerenityRest;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.junit.runners.Parameterized;
 
 import static net.serenitybdd.rest.SerenityRest.*;
 import static org.hamcrest.Matchers.is;
@@ -89,12 +87,12 @@ public class ZipToCityEndpointTest {
     }
 
     @ParameterizedTest(name="Iteration number {index} Country is {0} , Zipcode is {1}")
-    @CsvFileSource(resources = "features/country_zip.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/country_zip.csv", numLinesToSkip = 1)
     public void testCountryZip(String country, int zip){
         given()
                 .pathParam("country",country)
                 .pathParam("zipcode",zip).
-                when()
+        when()
                 .get("/{country}/{zipcode}") ;
         Ensure.that("we got successful result ", v -> v.statusCode(200) ) ;
     }

@@ -1,6 +1,5 @@
 package serenity.spartan;
 
-import Utility.SpartanUtil;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import net.serenitybdd.junit5.SerenityTest;
@@ -8,7 +7,6 @@ import net.serenitybdd.rest.Ensure;
 import net.serenitybdd.rest.SerenityRest;
 import org.junit.jupiter.api.*;
 
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static net.serenitybdd.rest.SerenityRest.*;
@@ -22,7 +20,7 @@ public class SimpleSpartanTest {
     @BeforeAll
     public static void setUp() {
         //54.224.154.167:8000
-        RestAssured.baseURI = "http://54.224.154.167:8000";
+        RestAssured.baseURI = "http://52.201.244.7:8000";
         RestAssured.basePath = "/api";
         //System.out.println("getDefaultRequestSpecification() = "+getDefaultRequestSpecification());
     }

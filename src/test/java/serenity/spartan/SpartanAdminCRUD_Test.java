@@ -1,10 +1,8 @@
 package serenity.spartan;
 
-import Utility.SpartanUtil;
+import serenity.Utility.SpartanUtil;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import net.serenitybdd.junit5.SerenityTest;
 import net.serenitybdd.rest.Ensure;
 import org.junit.jupiter.api.*;
@@ -23,7 +21,7 @@ public class SpartanAdminCRUD_Test {
     //static RequestSpecification adminSpec;
     @BeforeAll
     public static void setUp() {
-        RestAssured.baseURI = "http://54.224.154.167:8000";
+        RestAssured.baseURI = "http://52.201.244.7:8000";
         RestAssured.basePath = "/api";
         // this is setting static field of rest assured class requestSpecification
         // to the value we specified

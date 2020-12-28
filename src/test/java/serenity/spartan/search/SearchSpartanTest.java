@@ -1,11 +1,9 @@
 package serenity.spartan.search;
 
-import Utility.SpartanTestBase;
+import serenity.Utility.SpartanTestBase;
 import io.restassured.http.ContentType;
 import net.serenitybdd.junit5.SerenityTest;
 import net.serenitybdd.rest.Ensure;
-import net.serenitybdd.rest.SerenityRest;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
